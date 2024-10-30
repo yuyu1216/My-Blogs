@@ -1,0 +1,709 @@
+@charset "utf-8";
+
+/*========= ローディング画面のためのCSS ===============*/
+#splash {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #333;
+	z-index: 9999999;
+	text-align: center;
+	color: #fff;
+}
+
+#splash-logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+/*========= 画面遷移のためのCSS ===============*/
+
+/*画面遷移アニメーション*/
+
+body {
+	background: #333;
+	/*遷移アニメーションと同じ色を指定*/
+}
+
+body.appear {
+	background: url(image/background.jpg) repeat;
+	/*画面を開いた後の背景色を指定*/
+}
+
+.splashbg {
+	display: none;
+	content: "";
+	position: fixed;
+	transform: scale(100);
+	background-color: #fae8a8;
+	/*伸びる背景色の設定*/
+	z-index: 999;
+	/*丸のスタートの形状*/
+	top: calc(50% - 1rem);
+	/*50%から円の半径を引いた値*/
+	left: calc(50% - 1rem);
+	/*50%から円の半径を引いた値*/
+	width: 2rem;
+	height: 2rem;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg {
+	display: block;
+	border-radius: 50%;
+	animation-name: PageAnime;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes PageAnime {
+	0% {
+		/*丸のスタート位置と形状*/
+		transform: scale(100);
+
+	}
+
+	100% {
+		/*丸の終了位置と形状*/
+		transform: scale(0);
+		display: none;
+		/*終了時は消える*/
+	}
+}
+
+/*画面遷移の後現れるコンテンツ設定*/
+#container {
+	opacity: 0;
+	/*はじめは透過0に*/
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #container {
+	animation-name: PageAnimeAppear;
+	animation-duration: 1s;
+	animation-delay: 0.8s;
+	animation-fill-mode: forwards;
+	opacity: 0;
+}
+
+@keyframes PageAnimeAppear {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+/*========= レイアウトのためのCSS ===============*/
+
+
+
+small {
+	color: #000000;
+	display: block;
+	text-align: center;
+}
+
+#header {
+	background: #333;
+	color: #fff;
+	text-align: center;
+	padding: 0;
+}
+
+
+
+section:nth-child(2n) {
+	background: url(image/background.jpg) repeat
+}
+
+#footer {
+	background: #333;
+}
+
+/*ロゴ画像*/
+.logo-image {
+	vertical-align: bottom;
+}
+
+
+/*基本*/
+body {
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	font-family: "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo";
+	line-height: 1.4;
+	font-size: 20px;
+	background: url(image/background.jpg) repeat
+}
+
+p {
+	margin-bottom: 80px;
+}
+
+.div-li {
+	text-align: left;
+	padding: 0.5em 1em;
+	font-weight: bold;
+}
+
+
+.url {
+	text-decoration: none;
+	/*丸の基点とするためrelativeを指定*/
+	position: relative;
+	/*ボタンの形状*/
+	display: inline-block;
+	padding: 0 0 0 15px;
+	line-height: 50px;
+	color: #333;
+	outline: none;
+}
+
+/* 丸が動く */
+.url::before {
+	content: '';
+	/*絶対配置で丸の位置を決める*/
+	position: absolute;
+	left: 0;
+	z-index: -1;
+	/*丸の形状*/
+	width: 50px;
+	height: 50px;
+	background: #929292;
+	border-radius: 25px;
+	/*アニメーションの指定*/
+	transition: .3s ease-out;
+}
+
+/*hoverした際の形状*/
+.url:hover::before {
+	width: 120px;
+}
+
+/* 矢印の形状 */
+.url::after {
+	position: absolute;
+	content: '';
+	top: 1.3em;
+	right: -15px;
+	width: 5px;
+	height: 5px;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	transform: rotate(45deg);
+}
+
+
+
+/*KOISO's SITE設定*/
+.KOISO-SITE {
+	width: 100%;
+	height: 300px;
+	object-fit: cover; /* width, heightといっしょに使います */
+	border: 1px solid #111;
+	text-align: justify; 
+}
+
+.koiso-top{
+	text-align: center;
+}
+
+/*フッター要素*/
+footer {
+	text-align: center;
+	margin: 40px 0 20px;
+}
+
+/*段組みレイアウト*/
+.wrapper {
+	display: flex;
+	justify-content: space-around;
+}
+
+.main-area {
+	flex-basis: 100%;
+}
+
+table {
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 30px 0px;
+	border: none;
+}
+
+table tr td {
+	width: 80px;
+	text-align: center;
+}
+
+/*サイドバー要素*/
+.aside-border {
+	display: block;
+	text-align: center;
+	padding: 0.5em 1em;
+	font-weight: bold;
+	border: solid 3px #000000;
+	min-width: 300px;
+	max-width: 500px;
+	border-radius: 10px;
+	/*角の丸み*/
+}
+
+
+.sample1 {
+	border-bottom: solid 2px #555;
+	text-align: center;
+	/*文字中央寄せ*/
+}
+
+.page-card-container {
+	display: flex;
+	gap:10px;
+	/* justify-content: center; */
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.page-card-contents {
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+	background-color: #000000;
+	color: #ffffff;
+	display: inline-block;
+	padding: 0.5em 1.5em;
+	margin: 0 0 2em;
+	margin: 0;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	border-radius: 10px;
+}
+
+.page-card-contents:hover {
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+	transform: translateY(-1.0000em);
+}
+
+.page-card-contents img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+
+/*テーブル内のホバー要素************************************************************/
+.hover {
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+	background-color: #000000;
+	color: #ffffff;
+	display: inline-block;
+	padding: 0.5em 1.5em;
+	margin: 0 0 2em;
+	margin: 0;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	border-radius: 10px;
+}
+
+.hover-url {
+	text-decoration: none;
+}
+
+.hover:hover {
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+	transform: translateY(-1.0000em);
+}
+
+.hover-menu {
+	text-align: center;
+}
+
+/* tableの影払拭 */
+td {
+	border: none;
+}
+
+
+/* コピーボタン */
+.copy_btn {
+	width: 80% !important;
+	padding: 12px 0;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	color: #ffffff;
+	font-weight: bold;
+	background: #000000;
+	border: solid 2px #000000;
+	border-radius: 3px;
+	transition: .4s;
+	text-align: center;
+}
+
+.copy_btn:hover {
+	background: #ffffff;
+	color: #000000;
+}
+
+.copy_btn:hover {
+	cursor: pointer;
+}
+
+
+
+h1 {
+	font-family: Roboto;
+	font-size: 60px;
+	font-weight: bold;
+	line-height: 1.2;
+	padding: 0 50px;
+	text-align: left;
+	color: #000000;
+}
+
+
+
+/*グローバルメニュー*/
+.global-nav {
+	box-sizing: border-box;
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	background: #FFFFFF url(image/header-back.gif) repeat;
+	border-bottom: 1px solid rgba(57, 70, 106, .5);
+	opacity: 1;
+}
+
+.c-header {
+	max-width: 100%;
+	margin: auto;
+}
+
+.nav-list {
+	/*ナビゲーションメニューの余白解消*/
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	max-width: 800px;
+	margin: auto;
+}
+
+.nav-item {
+	display: inline-block;
+	padding: 15px 15px;
+	color: #fff;
+}
+
+nav ul {
+	list-style: none;
+	box-sizing: border-box;
+}
+
+
+
+
+@media screen and (max-width: 767px) {
+	nav ul li {
+		width: 100%;
+	}
+
+	.wrapper {
+		flex-wrap: wrap;
+		width: 100%;
+		/* flex-direction: column; */
+	}
+
+	.main-area {
+		width: 100%;
+	}
+
+	.aside-border {
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+p {
+	margin: 0 0 10px 0;
+}
+
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+.script-text {
+	text-align: center;
+}
+
+
+.store-1-map {
+	position: relative;
+	width: 100%;
+	padding-top: 75%;
+	/* = height ÷ width × 100 */
+}
+
+.iframe-wrp iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*---------------------------------------------------*/
+/*-----------お知らせ機能のためのCSS-----------------*/
+/*---------------------------------------------------*/
+.news-list {
+	list-style: none outside;
+	margin: 0;
+	padding: 0;
+}
+
+.news-list .item a {
+	display: flex;
+	flex-wrap: wrap;
+	flex-wrap: nowrap;
+	text-decoration: none;
+	color: #333;
+	border-bottom: 1px solid #CCC;
+	padding: 20px 20px;
+}
+
+.news-list .item:first-child a {
+	border-top: 1px solid #CCC;
+}
+
+.news-list .item .date {
+	margin: 0;
+	min-width: 140px;
+	font-size: 16px;
+	color: #999;
+	padding: 0 20px 0 0;
+}
+
+.news-list .item .category {
+	margin: 0;
+	min-width: 140px;
+	padding: 0 20px 0 0;
+}
+
+.news-list .item .category span {
+	background: #999;
+	color: #FFF;
+	text-align: center;
+	display: inline-block;
+	padding: 5px 20px;
+	font-size: 12px;
+	line-height: 1;
+}
+
+.news-list .item .title {
+	margin: 0;
+	width: 100%;
+}
+
+.news-list .item a:hover .title {
+	color: #00F;
+}
+
+@media screen and (max-width: 767px) {
+	.news-list .item a {
+		flex-wrap: wrap;
+	}
+
+	.news-list .item .date {
+		min-width: 100px;
+	}
+
+	.news-list .item .title {
+		margin-top: 10px;
+	}
+}
+
+/* 装飾 */
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	margin: 20px;
+}
+
+
+
+/*==================================================
+ギャラリーのためのcss
+===================================*/
+
+/*＝＝＝並び替えボタンのCSS*/
+.sort-btn {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 50px 20px;
+}
+
+.sort-btn li {
+	background: #eee;
+	list-style: none;
+	border-radius: 10px;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 10px;
+}
+
+/*横幅が480px以下になった際の指定*/
+@media only screen and (max-width: 480px) {
+	.sort-btn {
+		justify-content: space-between;
+	}
+
+	.sort-btn li {
+		width: 48%;
+		margin: 0 0 10px 0;
+		text-align: center;
+	}
+}
+
+/*＝＝＝Muuriのレイアウトのための調整 */
+.grid {
+	position: relative;
+	/*並び替えの基準点を指定*/
+}
+
+/*各画像の横幅などの設定*/
+.item {
+	display: block;
+	position: absolute;
+	width: 33%;
+	/*横並びで3つ表示*/
+	z-index: 1;
+	list-style: none;
+}
+
+/*内側のボックスの高さが崩れないように維持*/
+.item-content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+/*画像の横幅を100%にしてレスポンシブ化*/
+.grid img {
+	width: 100%;
+	height: auto;
+	vertical-align: bottom;
+	/*画像の下にできる余白を削除*/
+}
+
+/*横幅が768px以下になった際の指定*/
+@media only screen and (max-width: 768px) {
+	.item {
+		width: 49.5%;
+		/*横並びで2つ表示*/
+	}
+}
+
+/*＝＝＝fancyboxサムネイル背景と画像選択時の枠線の指定*/
+.fancybox-thumbs {
+	background: transparent !important;
+}
+
+.fancybox-thumbs__list a:before {
+	border: 6px solid #FA999B;
+}
+
+/*-------------------------SNSのためのCSS----------------------------*/
+/* ボタン全体 */
+.flowbtn2 {
+	position: relative; 
+	display: inline-block;
+	width: 75px;
+	height: 60px;
+	border-radius: 6px;
+	transition: .5s; 
+	text-decoration: none;
+	margin-bottom:10px;
+  
+	color: #fff;/* ボタン内カラー基本は白固定 */
+	background-color: #000;/* 背景カラー */
+	border: solid 1px;/* 枠線の指定 */
+  }
+
+  .flexbox div{
+	background: skyblue;
+	margin: 10px;
+	width: 200px;
+	height: 100px;
+  }
+  
+  .flexbox{
+	display:flex;
+  }
+  
+  /* マウスホバー時、ボタン内を白に指定 */
+  .flowbtn2:hover {
+	text-decoration: none;
+	cursor: pointer;
+  
+	color: #000;/* アイコンカラー */
+	border: solid 1px #000;/* 枠線カラー */
+	background-color: #fff;/* 背景カラー */
+  }
+
+  .fa-brands {
+  	text-align: center;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
+  }
+
+  .fa-regular {
+  	text-align: center;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
+  }
+
+  .fab {
+  	text-align: center;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
+  }
+
+  .SNS-none{
+	list-style: none;
+  }
+  /*-------------------------SNSのためのCSS終わり----------------------------*/
+
+  /*トップページへ遷移*/
+
+#page-top a {
+	background: #000000;
+	display: block;
+	padding: 20px;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 0.8rem;
+	transition: all 2s;
+}
