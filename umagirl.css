@@ -78,7 +78,7 @@ small {
 
 
 section:nth-child(2n) {
-	background: url(image/background.jpg) repeat
+	background: url(background.jpg) repeat
 }
 
 #footer {
@@ -335,7 +335,7 @@ h1 {
 	position: fixed;
 	z-index: 1000;
 	width: 100%;
-	background: #FFFFFF url(image/background.jpg) repeat;/*image/header-back.gifをもともと入れてた*/
+	background: #FFFFFF url(background.jpg) repeat;/*image/header-back.gifをもともと入れてた*/
 	border-bottom: 1px solid rgba(57, 70, 106, .5);
 	opacity: 1;
 }
