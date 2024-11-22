@@ -1,104 +1,62 @@
 @charset "utf-8";
-
-/*========= ローディング画面のためのCSS ===============*/
-#splash {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: #333;
-	z-index: 9999999;
-	text-align: center;
-	color: #fff;
-}
-
-#splash-logo {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-
-
-/*========= 画面遷移のためのCSS ===============*/
-
-/*画面遷移アニメーション*/
-
-body {
-	background: #333;
-	/*遷移アニメーションと同じ色を指定*/
-}
-
-body.appear {
-	background: url(image/background.jpg) repeat;
-	/*画面を開いた後の背景色を指定*/
-}
-
-.splashbg {
+/*=========ページ遷移のためのCSS===============*/
+.curtain .animation-bg, .curtain .animation-bg02 {
 	display: none;
+  }
+  body.appear.curtain .animation-bg, body.appear.curtain .animation-bg02 {
+	display: block;
+  }
+  .curtain .animation-bg, .curtain .animation-bg02 {
+	background: url(image/background.jpg) repeat;
 	content: "";
 	position: fixed;
-	transform: scale(100);
-	background-color: #fae8a8;
-	/*伸びる背景色の設定*/
 	z-index: 999;
-	/*丸のスタートの形状*/
-	top: calc(50% - 1rem);
-	/*50%から円の半径を引いた値*/
-	left: calc(50% - 1rem);
-	/*50%から円の半径を引いた値*/
-	width: 2rem;
-	height: 2rem;
-}
-
-/*bodyにappearクラスがついたら出現*/
-body.appear .splashbg {
-	display: block;
-	border-radius: 50%;
-	animation-name: PageAnime;
-	animation-duration: 1s;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	transform: scaleX(1);
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
 	animation-fill-mode: forwards;
-}
-
-@keyframes PageAnime {
+  }
+  .curtain .animation-bg {
+	left: 50%;
+	animation-name: PageAnime-curtain01;
+  }
+  .curtain .animation-bg02 {
+	right: 50%;
+	animation-name: PageAnime-curtain02;
+  }
+  /* カーテン左 キーフレーム */
+  @keyframes PageAnime-curtain01 {
 	0% {
-		/*丸のスタート位置と形状*/
-		transform: scale(100);
-
+	  transform-origin: left;
+	  transform: scaleX(1);
 	}
-
+	50% {
+	  transform-origin: right;
+	}
 	100% {
-		/*丸の終了位置と形状*/
-		transform: scale(0);
-		display: none;
-		/*終了時は消える*/
+	  transform-origin: right;
+	  transform: scaleX(0);
 	}
-}
-
-/*画面遷移の後現れるコンテンツ設定*/
-#container {
-	opacity: 0;
-	/*はじめは透過0に*/
-}
-
-/*bodyにappearクラスがついたら出現*/
-body.appear #container {
-	animation-name: PageAnimeAppear;
-	animation-duration: 1s;
-	animation-delay: 0.8s;
-	animation-fill-mode: forwards;
-	opacity: 0;
-}
-
-@keyframes PageAnimeAppear {
+  }
+  /* カーテン右 キーフレーム */
+  @keyframes PageAnime-curtain02 {
 	0% {
-		opacity: 0;
+	  transform-origin: right;
+	  transform: scaleX(1);
 	}
-
+	50% {
+	  transform-origin: left;
+	}
 	100% {
-		opacity: 1;
+	  transform-origin: left;
+	  transform: scaleX(0);
 	}
-}
+  }
+  
+
 
 /*========= レイアウトのためのCSS ===============*/
 
@@ -143,10 +101,6 @@ body {
 	line-height: 1.4;
 	font-size: 20px;
 	background: url(image/background.jpg) repeat
-}
-
-p {
-	margin-bottom: 80px;
 }
 
 .div-li {
@@ -215,6 +169,7 @@ p {
 
 .koiso-top{
 	text-align: center;
+	background: white; display: flex; align-items: center;height: 90px; justify-content: center;
 }
 
 /*フッター要素*/
@@ -297,6 +252,12 @@ table tr td {
 	object-fit: cover;
 }
 
+/*GoogleMapレスポンシブ可*/
+iframe {
+	aspect-ratio: 16/9;
+	width: 100%;
+  }
+
 /*テーブル内のホバー要素************************************************************/
 .hover {
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
@@ -374,7 +335,7 @@ h1 {
 	position: fixed;
 	z-index: 1000;
 	width: 100%;
-	background: #FFFFFF url(image/header-back.gif) repeat;
+	background: #FFFFFF url(image/background.jpg) repeat;/*image/header-back.gifをもともと入れてた*/
 	border-bottom: 1px solid rgba(57, 70, 106, .5);
 	opacity: 1;
 }
@@ -429,40 +390,31 @@ nav ul {
 
 
 
+/*---------------------------------------------------*/
+/*-----------Hobby内ボタンのためのCSS-----------------*/
+/*---------------------------------------------------*/
+.play-button {
+	background: linear-gradient(45deg, #ff7e5f, #feb47b); /* 暖色系のグラデーション */
+	color: white;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.3s ease;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+	margin-top: 20px;
+  }
+  
+  .play-button:hover {
+	transform: scale(1.1);
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .play-button:active {
+	transform: scale(0.95);
+  }
 
-
-
-/*========= レイアウトのためのCSS ===============*/
-
-p {
-	margin: 0 0 10px 0;
-}
-
-@keyframes shine {
-	100% {
-		left: 125%;
-	}
-}
-
-.script-text {
-	text-align: center;
-}
-
-
-.store-1-map {
-	position: relative;
-	width: 100%;
-	padding-top: 75%;
-	/* = height ÷ width × 100 */
-}
-
-.iframe-wrp iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
 
 /*---------------------------------------------------*/
 /*-----------お知らせ機能のためのCSS-----------------*/
@@ -544,9 +496,6 @@ a {
 	text-decoration: none;
 }
 
-body {
-	margin: 20px;
-}
 
 
 
