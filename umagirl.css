@@ -7,7 +7,7 @@
 	display: block;
   }
   .curtain .animation-bg, .curtain .animation-bg02 {
-	background: url(yuyu1216.blog.page/background.jpg) repeat;
+	background: url(background.jpg) repeat;
 	content: "";
 	position: fixed;
 	z-index: 999;
